@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My HTML</title>
+    <style>
+      body {
+        background-image: url("imageee.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .text {
+        text-align: center;
+        position: relative;
+      }
+
+      .text h1 {
+        font-size: 50px;
+        color: white;
+      }
+
+      .countdown {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        color: white;
+        white-space: nowrap;
+        direction: rtl;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="text">
+      <h1>COMING SOON..</h1>
+      <div class="countdown" id="countdown"></div>
+    </div>
+
+    <script>
+      function updateCountdown() {
+        var now = new Date();
+        var targetDate = new Date("2023-10-01");
+        var diff = targetDate - now;
+
+        var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        var countdownString =
+          days +
+          "d :" +
+          hours.toString().padStart(2, "0") +
+          "h :" +
+          minutes.toString().padStart(2, "0") +
+          "m :" +
+          seconds.toString().padStart(2, "0") +
+          "s";
+        document.getElementById("countdown").textContent = countdownString;
+      }
+
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
